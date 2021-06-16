@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import Button from "./Button";
 import Map from "./Map";
+import Header from "../components/Header";
 
 class StoreLocator extends Component {
   render() {
     return (
       <>
-        <Button />
-        <Button />
+        <Header />
+        <div>
+          <Button />
+          <Button />
+        </div>
         <Map />
       </>
     );

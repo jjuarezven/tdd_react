@@ -1,4 +1,5 @@
 import StoreLocator from "./StoreLocator";
+import "./App.css";
 
 function App() {
   return (
