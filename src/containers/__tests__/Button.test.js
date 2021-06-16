@@ -18,3 +18,47 @@ describe("Button", () => {
     expect(button.length).toBe(1);
   });
 });
+
+describe("when a location is passed to it", () => {
+  let mountedButton;
+  let props;
+
+  beforeEach(() => {
+    props = {
+      location: "Location 1"
+    };
+
+    mountedButton = shallow(<Button {...props} />);
+  });
+
+  it("displays the location", () => {
+    expect(mountedButton.length).toBe(1);
+  });
+
+  it("renders a button", () => {
+    const locName = mountedButton.find(".location-button");
+    expect(locName.text()).toEqual(props.location);
+  });
+});
+
+describe("when no location is passed to it", () => {
+  let mountedButton;
+  let props;
+
+  beforeEach(() => {
+    props = {
+      location: undefined
+    };
+
+    mountedButton = shallow(<Button {...props} />);
+  });
+
+  it("displays the location", () => {
+    expect(mountedButton.length).toBe(1);
+  });
+
+  it("renders a button", () => {
+    const locName = mountedButton.find(".location-button");
+    expect(locName.text()).toEqual("All Locations");
+  });
+});
