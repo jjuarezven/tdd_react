@@ -11,7 +11,7 @@ describe("StoreLocator", () => {
   });
 
   it("calls axios.get in #componentDidMount", () => {
-    return mountedStoreLocator
+    mountedStoreLocator
       .instance()
       .componentDidMount()
       .then(() => {
@@ -20,13 +20,27 @@ describe("StoreLocator", () => {
   });
 
   it("calls axios.get with correct url", () => {
-    return mountedStoreLocator
+    mountedStoreLocator
       .instance()
       .componentDidMount()
       .then(() => {
         expect(axios.get).toHaveBeenCalledWith(
           "http://localhost:3000/data/shops.json"
         );
+      });
+  });
+
+  it("updates state with api data", () => {
+    mountedStoreLocator
+      .instance()
+      .componentDidMount()
+      .then(() => {
+        expect(mountedStoreLocator.state()).toHaveProperty("shops", [
+          {
+            location: "test location",
+            address: "test address"
+          }
+        ]);
       });
   });
 
