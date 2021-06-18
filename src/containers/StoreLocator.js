@@ -3,20 +3,19 @@ import Button from "./Button";
 import Map from "./Map";
 import Header from "../components/Header";
 import mapChooser from "../mapChooser.js";
+import axios from "axios";
 
 class StoreLocator extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { currentMap: "none.png" };
-
-    this.shops = [
-      { location: "Portland", address: "123 Portland" },
-      { location: "Astoria", address: "123 Astoria" },
-      { location: "", address: "" }
-    ];
+    this.state = { currentMap: "none.png", shops: [] };
 
     this.chooseMap = this.chooseMap.bind(this);
+  }
+
+  async componentDidMount() {
+    const response = axios.get("http://localhost:3000/data/shops.json");
   }
 
   chooseMap(event) {
@@ -24,7 +23,7 @@ class StoreLocator extends Component {
   }
 
   render() {
-    const storeButtons = this.shops.map((shop, id) => {
+    const storeButtons = this.state.shops.map((shop, id) => {
       return (
         <Button
           key={id}
