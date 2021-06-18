@@ -6,7 +6,15 @@ class Button extends Component {
     const location = this.props.location
       ? this.props.location
       : "All Locations";
-    return <button className="location-button">{location}</button>;
+    return (
+      <button
+        value={this.props.location}
+        className="location-button"
+        onClick={this.props.handleClick}
+      >
+        {location}
+      </button>
+    );
   }
 }
 

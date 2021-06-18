@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Button from "./Button";
 import Map from "./Map";
 import Header from "../components/Header";
+import mapChooser from "../mapChooser.js";
 
 class StoreLocator extends Component {
   constructor(props) {
@@ -14,11 +15,23 @@ class StoreLocator extends Component {
       { location: "Astoria", address: "123 Astoria" },
       { location: "", address: "" }
     ];
+
+    this.chooseMap = this.chooseMap.bind(this);
+  }
+
+  chooseMap(event) {
+    this.setState({ currentMap: mapChooser(event.target.value) });
   }
 
   render() {
-    let storeButtons = this.shops.map((shop, id) => {
-      return <Button key={id} location={shop.location} />;
+    const storeButtons = this.shops.map((shop, id) => {
+      return (
+        <Button
+          key={id}
+          location={shop.location}
+          handleClick={this.chooseMap}
+        />
+      );
     });
 
     return (
